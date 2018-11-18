@@ -11,4 +11,8 @@ fn main() {
         .expect("Failed to read line"); // io::stdin() => instance of io::Stdin, returns `io::Result` => `Ok` or `Err`
 
     println!("You guessed: {}", guess);
+
+    for (i, ch) in guess.chars().enumerate() {
+       println!("Index: {}, char: {}", i, ch);
+    }
 }

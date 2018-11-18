@@ -15,4 +15,11 @@ fn main() {
     for (i, ch) in guess.chars().enumerate() {
        println!("Index: {}, char: {}", i, ch);
     }
+
+    enum Message {
+        Author,
+        Write(String),
+        Receiver { id: i64 }
+    }
+    // https://habr.com/post/430294
 }

@@ -1,5 +1,33 @@
 use std::io; // listed, without we would call `std::io::stdid()`.
 
+enum Message {
+    Publish,
+    Draft,
+    Delete,
+    Write(String)
+}
+// https://habr.com/post/430294
+
+fn inspect(message: Message) {
+    match message {
+        Message::Publish => println!("publishing"),
+        Message::Delete => println!("deleting"),
+        Message::Draft => println!("drafting"),
+        Message::Write(text) => {
+            println!("printing");
+            let mut copy_of_text = &text;
+            sendText(&mut copy_of_text);
+        }
+    }
+}
+
+fn sendText(text:&mut String) {
+    // TODO: API call
+    text.truncate(160);
+    println!("Brief {}", text);
+}
+
+
 fn main() {
     println!("Guess the number!");
 
@@ -16,10 +44,4 @@ fn main() {
        println!("Index: {}, char: {}", i, ch);
     }
 
-    enum Message {
-        Author,
-        Write(String),
-        Receiver { id: i64 }
-    }
-    // https://habr.com/post/430294
 }
